@@ -13,12 +13,18 @@ class LoginComponent extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.loginClicked();
   }
 
   loginClicked() {
@@ -44,27 +50,29 @@ class LoginComponent extends Component {
       <div>
         <h1>Login</h1>
         <div className="container">
-          {this.state.hasLoginFailed && (
-            <div className="alert alert-warning">Invalid Credentials</div>
-          )}
-          {this.state.showSuccessMessage && <div>Login Sucessful</div>}
-          User Name:{" "}
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-          />
-          Password:{" "}
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-          <button className="btn btn-success" onClick={this.loginClicked}>
-            Login
-          </button>
+          <form onSubmit={this.handleSubmit}>
+            {this.state.hasLoginFailed && (
+              <div className="alert alert-warning">Invalid Credentials</div>
+            )}
+            {this.state.showSuccessMessage && <div>Login Sucessful</div>}
+            Username:{" "}
+            <input
+              type="text"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+            Password:{" "}
+            <input
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+            <button className="btn btn-success" onClick={this.loginClicked}>
+              Login
+            </button>
+          </form>
         </div>
       </div>
     );
