@@ -1,4 +1,4 @@
-package com.rodrigo.rest.webservices.restfulwebservices.todo.dto;
+package com.rodrigo.rest.restfulwebservices.todo.dto;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

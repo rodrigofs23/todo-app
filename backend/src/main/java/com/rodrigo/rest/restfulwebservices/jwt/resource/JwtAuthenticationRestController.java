@@ -1,7 +1,7 @@
-package com.rodrigo.rest.webservices.restfulwebservices.jwt.resource;
+package com.rodrigo.rest.restfulwebservices.jwt.resource;
 
-import com.rodrigo.rest.webservices.restfulwebservices.jwt.JwtTokenUtil;
-import com.rodrigo.rest.webservices.restfulwebservices.jwt.JwtUserDetails;
+import com.rodrigo.rest.restfulwebservices.jwt.JwtTokenUtil;
+import com.rodrigo.rest.restfulwebservices.jwt.JwtUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

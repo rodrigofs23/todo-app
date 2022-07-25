@@ -1,4 +1,4 @@
-package com.rodrigo.rest.webservices.restfulwebservices.jwt;
+package com.rodrigo.rest.restfulwebservices.jwt;
 
 import java.util.ArrayList;
 import java.util.List;

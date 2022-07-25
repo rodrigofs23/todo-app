@@ -1,4 +1,4 @@
-package com.rodrigo.rest.webservices.restfulwebservices.jwt;
+package com.rodrigo.rest.restfulwebservices.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

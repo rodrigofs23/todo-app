@@ -1,4 +1,4 @@
-package com.rodrigo.rest.webservices.restfulwebservices.jwt;
+package com.rodrigo.rest.restfulwebservices.jwt;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

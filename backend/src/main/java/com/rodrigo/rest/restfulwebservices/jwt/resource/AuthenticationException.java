@@ -1,4 +1,4 @@
-package com.rodrigo.rest.webservices.restfulwebservices.jwt.resource;
+package com.rodrigo.rest.restfulwebservices.jwt.resource;
 
 public class AuthenticationException extends RuntimeException {
   public AuthenticationException(String message, Throwable cause) {

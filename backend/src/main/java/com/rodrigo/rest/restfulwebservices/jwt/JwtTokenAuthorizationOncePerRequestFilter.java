@@ -1,4 +1,4 @@
-package com.rodrigo.rest.webservices.restfulwebservices.jwt;
+package com.rodrigo.rest.restfulwebservices.jwt;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;

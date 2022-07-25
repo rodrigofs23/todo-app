@@ -1,4 +1,4 @@
-package com.rodrigo.rest.webservices.restfulwebservices;
+package com.rodrigo.rest.restfulwebservices;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

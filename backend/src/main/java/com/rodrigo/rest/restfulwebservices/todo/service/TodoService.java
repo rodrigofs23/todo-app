@@ -1,7 +1,7 @@
-package com.rodrigo.rest.webservices.restfulwebservices.todo.service;
+package com.rodrigo.rest.restfulwebservices.todo.service;
 
-import com.rodrigo.rest.webservices.restfulwebservices.todo.entity.Todo;
-import com.rodrigo.rest.webservices.restfulwebservices.todo.repository.TodoJpaRepository;
+import com.rodrigo.rest.restfulwebservices.todo.entity.Todo;
+import com.rodrigo.rest.restfulwebservices.todo.repository.TodoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

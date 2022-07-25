@@ -1,4 +1,4 @@
-package com.rodrigo.rest.webservices.restfulwebservices.todo.entity;
+package com.rodrigo.rest.restfulwebservices.todo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,9 +29,9 @@ public class Todo {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+    if (o == null || getClass() != o.getClass()) return false;
     Todo todo = (Todo) o;
-    return id != null && Objects.equals(id, todo.id);
+    return id.equals(todo.id);
   }
 
   @Override

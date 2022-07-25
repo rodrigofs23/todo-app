@@ -1,7 +1,7 @@
-package com.rodrigo.rest.webservices.restfulwebservices.todo.controller;
+package com.rodrigo.rest.restfulwebservices.todo.controller;
 
-import com.rodrigo.rest.webservices.restfulwebservices.todo.entity.Todo;
-import com.rodrigo.rest.webservices.restfulwebservices.todo.service.TodoService;
+import com.rodrigo.rest.restfulwebservices.todo.entity.Todo;
+import com.rodrigo.rest.restfulwebservices.todo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +36,7 @@ public class TodoController {
 
   @GetMapping("/users/{username}/todos/{id}")
   public Todo getTodo(@PathVariable String username, @PathVariable long id) {
-     return todoService.findById(id);
+    return todoService.findById(id);
   }
 
   @DeleteMapping("/users/{username}/todos/{id}")
