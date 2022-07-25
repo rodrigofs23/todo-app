@@ -22,7 +22,7 @@ public class JwtTokenUtil implements Serializable {
   static final String CLAIM_KEY_USERNAME = "sub";
   static final String CLAIM_KEY_CREATED = "iat";
   private static final long serialVersionUID = -3301605591108950415L;
-  private final Clock clock = DefaultClock.INSTANCE;
+  private static final Clock clock = DefaultClock.INSTANCE;
 
   @Value("${jwt.signing.key.secret}")
   private String secret;
@@ -51,12 +51,12 @@ public class JwtTokenUtil implements Serializable {
     return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
   }
 
-  private Boolean isTokenExpired(String token) {
+  private boolean isTokenExpired(String token) {
     final Date expirationDate = getExpirationDateFromToken(token);
-    return expirationDate.before(clock.now());
+    return !expirationDate.before(clock.now());
   }
 
-  private Boolean ignoreTokenExpiration(String token) {
+  private boolean ignoreTokenExpiration(/*String token*/) {
     // here you specify tokens, for that the expiration is ignored
     return false;
   }
@@ -79,8 +79,8 @@ public class JwtTokenUtil implements Serializable {
         .compact();
   }
 
-  public Boolean canTokenBeRefreshed(String token) {
-    return (!isTokenExpired(token) || ignoreTokenExpiration(token));
+  public boolean canTokenBeRefreshed(String token) {
+    return (isTokenExpired(token) || ignoreTokenExpiration());
   }
 
   public String refreshToken(String token) {
@@ -94,10 +94,10 @@ public class JwtTokenUtil implements Serializable {
     return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
   }
 
-  public Boolean validateToken(String token, UserDetails userDetails) {
+  public boolean validateToken(String token, UserDetails userDetails) {
     JwtUserDetails user = (JwtUserDetails) userDetails;
     final String username = getUsernameFromToken(token);
-    return (username.equals(user.getUsername()) && !isTokenExpired(token));
+    return (username.equals(user.getUsername()) && isTokenExpired(token));
   }
 
   private Date calculateExpirationDate(Date createdDate) {

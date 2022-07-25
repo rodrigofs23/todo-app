@@ -29,14 +29,24 @@ public class JwtAuthenticationRestController {
   @Value("${jwt.http.request.header}")
   private String tokenHeader;
 
-  @Autowired private AuthenticationManager authenticationManager;
+  private final AuthenticationManager authenticationManager;
 
-  @Autowired private JwtTokenUtil jwtTokenUtil;
+  private final JwtTokenUtil jwtTokenUtil;
 
-  @Autowired private UserDetailsService jwtInMemoryUserDetailsService;
+  private final UserDetailsService jwtInMemoryUserDetailsService;
+
+  @Autowired
+  public JwtAuthenticationRestController(
+      AuthenticationManager authenticationManager,
+      JwtTokenUtil jwtTokenUtil,
+      UserDetailsService jwtInMemoryUserDetailsService) {
+    this.authenticationManager = authenticationManager;
+    this.jwtTokenUtil = jwtTokenUtil;
+    this.jwtInMemoryUserDetailsService = jwtInMemoryUserDetailsService;
+  }
 
   @PostMapping(value = "${jwt.get.token.uri}")
-  public ResponseEntity<?> createAuthenticationToken(
+  public ResponseEntity<JwtTokenResponse> createAuthenticationToken(
       @RequestBody JwtTokenRequest authenticationRequest) throws AuthenticationException {
 
     authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
@@ -50,14 +60,14 @@ public class JwtAuthenticationRestController {
   }
 
   @GetMapping(value = "${jwt.refresh.token.uri}")
-  public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
+  public ResponseEntity<JwtTokenResponse> refreshAndGetAuthenticationToken(HttpServletRequest request) {
     String authToken = request.getHeader(tokenHeader);
     final String token = authToken.substring(7);
     String username = jwtTokenUtil.getUsernameFromToken(token);
     JwtUserDetails user =
         (JwtUserDetails) jwtInMemoryUserDetailsService.loadUserByUsername(username);
 
-    if (jwtTokenUtil.canTokenBeRefreshed(token)) {
+    if (Boolean.TRUE.equals(jwtTokenUtil.canTokenBeRefreshed(token))) {
       String refreshedToken = jwtTokenUtil.refreshToken(token);
       return ResponseEntity.ok(new JwtTokenResponse(refreshedToken));
     } else {
